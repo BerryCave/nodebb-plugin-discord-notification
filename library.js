@@ -46,7 +46,7 @@
 			
 			//for (var [key, value] of webhookURLs.entries()) {
 			
-			for(var [key, val] of Object.entries(webhookURLs)) {						
+			for(var [key, value] of Object.entries(webhookURLs)) {						
 				match = value.match(plugin.regex);
 				
 				if (match) {
@@ -89,7 +89,7 @@
 				var postAbilitations = {};
 				var globalPostAbilitation = false;
 								
-				for (var [key, value] of categories.entries()) {
+				for (var [key, value] of Object.entries(categories)) {
 					postAbilitations[value] = (!value || value.indexOf(String(post.cid)) >= 0);
 					globalPostAbilitation = globalPostAbilitation || postAbilitations[value];
 				}
@@ -121,7 +121,7 @@
 						.setTimestamp();
 
 					// Send notification:
-					for (var [key, value] of postAbilitations.entries()) {
+					for (var [key, value] of Object.entries(postAbilitations)) {
 						if (postAbilitations[value]) {
 							hook[value].send(messageContent, {embeds: [embed]}).catch(console.error);
 						}												
