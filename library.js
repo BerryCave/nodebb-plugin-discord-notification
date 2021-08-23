@@ -11,14 +11,14 @@
 
 	var Discord = require('discord.js');
 
-	var hook = null;
+	var hook = {};
 	var forumURL = nconf.get('url');
 
 	var plugin = {
 			config: {
-				webhookURL: '',
+				webhookURL: { 1: '', 2: '' },
 				maxLength: '',
-				postCategories: '',
+				postCategories: { 1: '', 2: '' },
 				topicsOnly: '',
 				messageContent: ''
 			},
@@ -40,12 +40,23 @@
 				}
 			}
 
-			// Parse Webhook URL (1: ID, 2: Token)
-			var match = plugin.config['webhookURL'].match(plugin.regex);
-
-			if (match) {
-				hook = new Discord.WebhookClient(match[1], match[2]);
+			// Parse Webhook URL (1: ID, 2: Token)			
+			var match;
+			var webhookURLs = plugin.config['webhookURL'];			
+			
+			for (var [key, value] of webhookURLs.entries()) {
+				match = value.match(plugin.regex);
+				
+				if (match) {
+					hook[key] = new Discord.WebhookClient(match[1], match[2]);
+				}				
 			}
+			
+			//var match = plugin.config['webhookURL'].match(plugin.regex);
+
+			//if (match) {
+			//	hook = new Discord.WebhookClient(match[1], match[2]);
+			//}
 		});
 
 		callback();
@@ -70,8 +81,18 @@
 				}
 			}, function(err, data) {
 				var categories = JSON.parse(plugin.config['postCategories']);
+				
+				//var isAbleToBePosted = (!categories || categories.indexOf(String(post.cid)) >= 0); 
 
-				if (!categories || categories.indexOf(String(post.cid)) >= 0) {
+				var postAbilitations = {};
+				var globalPostAbilitation = false;
+								
+				for (var [key, value] of categories.entries()) {
+					postAbilitations[value] = (!value || value.indexOf(String(post.cid)) >= 0);
+					globalPostAbilitation = globalPostAbilitation || postAbilitations[value];
+				}
+				
+				if (globalPostAbilitation) {
 					// Trim long posts:
 					var maxQuoteLength = plugin.config['maxLength'] || 1024;
 					if (content.length > maxQuoteLength) { content = content.substring(0, maxQuoteLength) + '...'; }
@@ -98,9 +119,15 @@
 						.setTimestamp();
 
 					// Send notification:
-					if (hook) {
-						hook.send(messageContent, {embeds: [embed]}).catch(console.error);
+					for (var [key, value] of postAbilitations.entries()) {
+						if (postAbilitations[value]) {
+							hook[value].send(messageContent, {embeds: [embed]}).catch(console.error);
+						}												
 					}
+										
+					//if (hook) {
+					//	hook.send(messageContent, {embeds: [embed]}).catch(console.error);
+					//}
 				}
 			});
 		}
