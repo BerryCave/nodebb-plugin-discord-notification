@@ -11,7 +11,7 @@
 
 	var Discord = require('discord.js');
 
-	var hook = {};
+	var hooks = {};
 	var forumURL = nconf.get('url');
 
 	var plugin = {
@@ -50,7 +50,7 @@
 				match = value.match(plugin.regex);
 				
 				if (match) {
-					hook[key] = new Discord.WebhookClient(match[1], match[2]);
+					hooks[key] = new Discord.WebhookClient(match[1], match[2]);
 				}				
 			}
 			
@@ -123,7 +123,12 @@
 					// Send notification:
 					for (var [key, value] of Object.entries(postAbilitations)) {
 						if (postAbilitations[key]) {
-							hook[key].send(messageContent, {embeds: [embed]}).catch(console.error);
+							
+							var hook = hooks[key];
+							
+							if (hook) {
+								hook.send(messageContent, {embeds: [embed]}).catch(console.error);	
+							}													
 						}												
 					}
 										
