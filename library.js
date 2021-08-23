@@ -18,7 +18,7 @@
 	var postCategories = {};
 	var number = 2;
 	
-	for (var i = 1; i < number; i++) {
+	for (var i = 1; i <= number; i++) {
 		webHookURLDefinitions[i] = '';
 		postCategories[i] = '';
 	}
