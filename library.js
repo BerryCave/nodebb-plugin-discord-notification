@@ -44,7 +44,9 @@
 			var match;
 			var webhookURLs = plugin.config['webhookURL'];			
 			
-			for (var [key, value] of webhookURLs.entries()) {
+			//for (var [key, value] of webhookURLs.entries()) {
+			
+			for(var [key, val] of Object.entries(webhookURLs)) {						
 				match = value.match(plugin.regex);
 				
 				if (match) {
