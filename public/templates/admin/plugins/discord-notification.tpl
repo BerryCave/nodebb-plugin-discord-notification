@@ -59,7 +59,7 @@
 		socket.emit('categories.get', function(err, data) {
 			categories = data;
 			for (var i = 0; i < categories.length; ++i) {
-				$('#postCategories').append('<option value=' + categories[i].cid + '>' + categories[i].name + '</option>');
+				$('[id^=postCategories]').append('<option value=' + categories[i].cid + '>' + categories[i].name + '</option>');
 			}
 		});
 	});
