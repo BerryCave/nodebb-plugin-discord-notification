@@ -90,8 +90,8 @@
 				var globalPostAbilitation = false;
 								
 				for (var [key, value] of Object.entries(categories)) {
-					postAbilitations[value] = (!value || value.indexOf(String(post.cid)) >= 0);
-					globalPostAbilitation = globalPostAbilitation || postAbilitations[value];
+					postAbilitations[key] = (!value || value.indexOf(String(post.cid)) >= 0);
+					globalPostAbilitation = globalPostAbilitation || postAbilitations[key];
 				}
 				
 				if (globalPostAbilitation) {
@@ -122,8 +122,8 @@
 
 					// Send notification:
 					for (var [key, value] of Object.entries(postAbilitations)) {
-						if (postAbilitations[value]) {
-							hook[value].send(messageContent, {embeds: [embed]}).catch(console.error);
+						if (postAbilitations[key]) {
+							hook[key].send(messageContent, {embeds: [embed]}).catch(console.error);
 						}												
 					}
 										
