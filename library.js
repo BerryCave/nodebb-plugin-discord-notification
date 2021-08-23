@@ -51,7 +51,10 @@
 				
 				if (match) {
 					hooks[key] = new Discord.WebhookClient(match[1], match[2]);
-				}				
+				}
+				else {
+					hooks[key] = null;	
+				}
 			}
 			
 			//var match = plugin.config['webhookURL'].match(plugin.regex);
