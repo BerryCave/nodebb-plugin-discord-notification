@@ -13,21 +13,14 @@
 
 	var hooks = {};
 	var forumURL = nconf.get('url');
-
-	var webHookURLDefinitions = {};
-	var postCategories = {};
-	var number = 2;
-	
-	for (var i = 1; i <= number; i++) {
-		webHookURLDefinitions[i] = '';
-		postCategories[i] = '';
-	}
 	
 	var plugin = {
 			config: {
-				webhookURL: webHookURLDefinitions,
+				webhookURL1: '',
+				webhookURL2: '',
 				maxLength: '',
-				postCategories: postCategories,
+				postCategories1: '',
+				postCategories2: '',
 				topicsOnly: '',
 				messageContent: ''
 			},
@@ -51,7 +44,7 @@
 
 			// Parse Webhook URL (1: ID, 2: Token)			
 			var match;
-			var webhookURLs = plugin.config['webhookURL'];	
+			var webhookURLs = { 1: plugin.config['webhookURL1'], 2: plugin.config['webhookURL2'] };	
 			console.log(webhookURLs);
 			
 			//for (var [key, value] of webhookURLs.entries()) {
@@ -95,8 +88,8 @@
 					Categories.getCategoryFields(post.cid, ['name', 'bgColor'], callback);
 				}
 			}, function(err, data) {
-				var categories = JSON.parse(plugin.config['postCategories']);
-				console.log(plugin.config['postCategories']);
+				var categories = { 1: JSON.parse(plugin.config['postCategories1']), 2: JSON.parse(plugin.config['postCategories2']) };
+				console.log(categories);
 				//var isAbleToBePosted = (!categories || categories.indexOf(String(post.cid)) >= 0); 
 
 				var postAbilitations = {};
