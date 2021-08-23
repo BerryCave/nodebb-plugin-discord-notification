@@ -128,6 +128,7 @@
 						if (postAbilitations[key]) {
 							
 							var hook = hooks[key];
+							console.log(hook);
 							
 							if (hook) {
 								hook.send(messageContent, {embeds: [embed]}).catch(console.error);	
