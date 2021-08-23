@@ -51,7 +51,8 @@
 
 			// Parse Webhook URL (1: ID, 2: Token)			
 			var match;
-			var webhookURLs = plugin.config['webhookURL'];			
+			var webhookURLs = plugin.config['webhookURL'];	
+			console.log(webhookURLs);
 			
 			//for (var [key, value] of webhookURLs.entries()) {
 			
