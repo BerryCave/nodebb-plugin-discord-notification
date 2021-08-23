@@ -14,11 +14,20 @@
 	var hooks = {};
 	var forumURL = nconf.get('url');
 
+	var webHookURLDefinitions = {};
+	var postCategories = {};
+	var number = 2;
+	
+	for (var i = 1; i < number; i++) {
+		webHookURLDefinitions[i] = '';
+		postCategories[i] = '';
+	}
+	
 	var plugin = {
 			config: {
-				webhookURL: { 1: '', 2: '' },
+				webhookURL: webHookURLDefinitions,
 				maxLength: '',
-				postCategories: { 1: '', 2: '' },
+				postCategories: postCategories,
 				topicsOnly: '',
 				messageContent: ''
 			},
@@ -86,7 +95,7 @@
 				}
 			}, function(err, data) {
 				var categories = JSON.parse(plugin.config['postCategories']);
-				
+				console.log(plugin.config['postCategories']);
 				//var isAbleToBePosted = (!categories || categories.indexOf(String(post.cid)) >= 0); 
 
 				var postAbilitations = {};
