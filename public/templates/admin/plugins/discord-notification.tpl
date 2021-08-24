@@ -2,13 +2,28 @@
 
 	<ul class="nav nav-pills">
 		<li>
-			<a href="#configuration1" data-toggle="tab">
-                        	Configuration 1
+			<a href="#configuration2" data-toggle="tab">
+                        	Forum
                 	</a>
 		</li>
 		<li>
-			<a href="#configuration2" data-toggle="tab">
-                        	Configuration 2
+			<a href="#configuration1" data-toggle="tab">
+                        	Programmazione
+                	</a>
+		</li>
+		<li>
+			<a href="#configuration3" data-toggle="tab">
+                        	Single Board
+                	</a>
+		</li>
+		<li>
+			<a href="#configuration4" data-toggle="tab">
+                        	Astronomia
+                	</a>
+		</li>
+		<li>
+			<a href="#configuration5" data-toggle="tab">
+                        	IoT
                 	</a>
 		</li>
 	</ul>
@@ -41,6 +56,48 @@
 						<div class="form-group">
 							<label for="postCategories2">[[discord-notification:post-categories]]</label>
 							<select class="form-control" id="postCategories2" name="postCategories2" size="10" multiple></select>
+						</div>						
+					</ul>
+				</div>
+				
+				<div class="tab-pane fade" id="configuration3">
+					<ul class="configuration3">
+						<div class="form-group">
+							<label for="webhookURL3">[[discord-notification:webhook-url]]</label>
+							<input type="text" class="form-control" id="webhookURL3" name="webhookURL3" />
+							<p class="help-block">[[discord-notification:webhook-help]]</p>
+						</div>
+						<div class="form-group">
+							<label for="postCategories3">[[discord-notification:post-categories]]</label>
+							<select class="form-control" id="postCategories3" name="postCategories3" size="10" multiple></select>
+						</div>						
+					</ul>
+				</div>
+				
+				<div class="tab-pane fade" id="configuration4">
+					<ul class="configuration4">
+						<div class="form-group">
+							<label for="webhookURL4">[[discord-notification:webhook-url]]</label>
+							<input type="text" class="form-control" id="webhookURL4" name="webhookURL4" />
+							<p class="help-block">[[discord-notification:webhook-help]]</p>
+						</div>
+						<div class="form-group">
+							<label for="postCategories4">[[discord-notification:post-categories]]</label>
+							<select class="form-control" id="postCategories4" name="postCategories4" size="10" multiple></select>
+						</div>						
+					</ul>
+				</div>
+				
+				<div class="tab-pane fade" id="configuration5">
+					<ul class="configuration5">
+						<div class="form-group">
+							<label for="webhookURL5">[[discord-notification:webhook-url]]</label>
+							<input type="text" class="form-control" id="webhookURL5" name="webhookURL5" />
+							<p class="help-block">[[discord-notification:webhook-help]]</p>
+						</div>
+						<div class="form-group">
+							<label for="postCategories5">[[discord-notification:post-categories]]</label>
+							<select class="form-control" id="postCategories5" name="postCategories5" size="10" multiple></select>
 						</div>						
 					</ul>
 				</div>
