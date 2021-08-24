@@ -1,8 +1,8 @@
 {
   "name": "nodebb-plugin-discord-notification",
-  "title": "Discord Notifications for NodeBB",
+  "title": "Discord Notifications for NodeBB with multiple Discord channels management",
   "version": "1.5.0",
-  "description": "Send notifications of new posts and topics via Discord webhook.",
+  "description": "Send notifications of new posts and topics via Discord webhook on multiple Discord channels.",
   "keywords": [
     "discord",
     "nodebb",
@@ -11,15 +11,15 @@
     "notifications"
   ],
   "author": {
-    "name": "Amargon",
-    "url": "https://github.com/amargon/"
+    "name": "BerryCave",
+    "url": "https://github.com/BerryCave/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/amargon/nodebb-plugin-discord-notification"
+    "url": "https://github.com/BerryCave/nodebb-plugin-discord-notification"
   },
   "bugs": {
-    "url": "https://github.com/amargon/nodebb-plugin-discord-notification/issues"
+    "url": "https://github.com/BerryCave/nodebb-plugin-discord-notification/issues"
   },
   "license": "MIT",
   "main": "library.js",
