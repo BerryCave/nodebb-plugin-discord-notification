@@ -2,7 +2,7 @@
 	"id": "nodebb-plugin-discord-notification",
 	"name": "Discord Notifications for NodeBB",
 	"description": "Send notifications of new posts and topics via Discord webhook.",
-	"url": "https://github.com/amargon/nodebb-plugin-discord-notification",
+	"url": "https://github.com/BerryCave/nodebb-plugin-discord-notification/blob/master/plugin.json",
 	"library": "./library.js",
 	"hooks": [
 		{ "hook": "static:app.load", "method": "init" },
