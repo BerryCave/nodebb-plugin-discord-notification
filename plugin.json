@@ -1,6 +1,6 @@
 {
 	"id": "nodebb-plugin-discord-notification",
-	"name": "Discord Notifications for NodeBB",
+	"name": "Discord Notifications for NodeBB with multiple Discord channels management",
 	"description": "Send notifications of new posts and topics via Discord webhook.",
 	"url": "https://github.com/BerryCave/nodebb-plugin-discord-notification/blob/master/plugin.json",
 	"library": "./library.js",
