@@ -14,18 +14,21 @@
 	var hooks = {};
 	var forumURL = nconf.get('url');
 	
+	var sectionsCount = 2;
+	
 	var plugin = {
 			config: {
-				webhookURL1: '',
-				webhookURL2: '',
 				maxLength: '',
-				postCategories1: '',
-				postCategories2: '',
 				topicsOnly: '',
 				messageContent: ''
 			},
 			regex: /https:\/\/discord(?:app)?\.com\/api\/webhooks\/([0-9]+?)\/(.+?)$/
 		};
+	
+	for (var i = 1; i <= sectionsCount; i++) {
+		plugin.config['webhookURL' + i] = '';
+		plugin.config['postCategories' + i] = '';
+	}	
 
 	plugin.init = function(params, callback) {
 		function render(req, res, next) {
@@ -44,27 +47,21 @@
 
 			// Parse Webhook URL (1: ID, 2: Token)			
 			var match;
-			var webhookURLs = { 1: plugin.config['webhookURL1'], 2: plugin.config['webhookURL2'] };	
-			console.log(webhookURLs);
+			var webhookURLs = {};
 			
-			//for (var [key, value] of webhookURLs.entries()) {
-			
-			for(var [key, value] of Object.entries(webhookURLs)) {						
-				match = value.match(plugin.regex);
+			for (var i = 1; i <= sectionsCount; i++) {
+				webhookURLs[i] = plugin.config['webhookURL' + i]; 	
+				
+				match = webhookURLs[i].match(plugin.regex);
 				
 				if (match) {
-					hooks[key] = new Discord.WebhookClient(match[1], match[2]);
+					hooks[i] = new Discord.WebhookClient(match[1], match[2]);
 				}
 				else {
-					hooks[key] = null;	
+					hooks[i] = null;	
 				}
-			}
-			
-			//var match = plugin.config['webhookURL'].match(plugin.regex);
-
-			//if (match) {
-			//	hook = new Discord.WebhookClient(match[1], match[2]);
-			//}
+			}			
+			console.log(webhookURLs);						
 		});
 
 		callback();
@@ -88,17 +85,17 @@
 					Categories.getCategoryFields(post.cid, ['name', 'bgColor'], callback);
 				}
 			}, function(err, data) {
-				var categories = { 1: JSON.parse(plugin.config['postCategories1']), 2: JSON.parse(plugin.config['postCategories2']) };
-				console.log(categories);
-				//var isAbleToBePosted = (!categories || categories.indexOf(String(post.cid)) >= 0); 
-
+				
+				var categories = {};
 				var postAbilitations = {};
 				var globalPostAbilitation = false;
-								
-				for (var [key, value] of Object.entries(categories)) {
-					postAbilitations[key] = (!value || value.indexOf(String(post.cid)) >= 0);
-					globalPostAbilitation = globalPostAbilitation || postAbilitations[key];
-				}
+				
+				for (var i = 1; i <= sectionsCount; i++) {
+					categories[i] = JSON.parse(plugin.config['postCategories' + i]);
+					postAbilitations[i] = (!categories[i] || categories[i].indexOf(String(post.cid)) >= 0);
+					globalPostAbilitation = globalPostAbilitation || postAbilitations[i];
+				}				
+				console.log(categories);
 				
 				if (globalPostAbilitation) {
 					// Trim long posts:
@@ -127,21 +124,16 @@
 						.setTimestamp();
 
 					// Send notification:
-					for (var [key, value] of Object.entries(postAbilitations)) {
-						if (postAbilitations[key]) {
-							
-							var hook = hooks[key];
+					for (var i = 1; i <= sectionsCount; i++) {
+						if (postAbilitations[i]) {							
+							var hook = hooks[i];
 							console.log(hook);
 							
 							if (hook) {
 								hook.send(messageContent, {embeds: [embed]}).catch(console.error);	
 							}													
 						}												
-					}
-										
-					//if (hook) {
-					//	hook.send(messageContent, {embeds: [embed]}).catch(console.error);
-					//}
+					}										
 				}
 			});
 		}
