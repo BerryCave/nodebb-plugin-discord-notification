@@ -14,7 +14,7 @@
 	var hooks = {};
 	var forumURL = nconf.get('url');
 	
-	var sectionsCount = 5;
+	var sectionsCount = 6;
 	
 	var plugin = {
 			config: {
