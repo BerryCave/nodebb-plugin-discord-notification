@@ -26,6 +26,11 @@
                         	IoT
                 	</a>
 		</li>
+		<li>
+			<a href="#configuration6" data-toggle="tab">
+                        	Blog
+                	</a>
+		</li>
 	</ul>
 
 	<div class="row">
@@ -98,6 +103,20 @@
 						<div class="form-group">
 							<label for="postCategories5">[[discord-notification:post-categories]]</label>
 							<select class="form-control" id="postCategories5" name="postCategories5" size="10" multiple></select>
+						</div>						
+					</ul>
+				</div>
+				
+				<div class="tab-pane fade" id="configuration6">
+					<ul class="configuration6">
+						<div class="form-group">
+							<label for="webhookURL6">[[discord-notification:webhook-url]]</label>
+							<input type="text" class="form-control" id="webhookURL6" name="webhookURL6" />
+							<p class="help-block">[[discord-notification:webhook-help]]</p>
+						</div>
+						<div class="form-group">
+							<label for="postCategories6">[[discord-notification:post-categories]]</label>
+							<select class="form-control" id="postCategories6" name="postCategories6" size="10" multiple></select>
 						</div>						
 					</ul>
 				</div>
